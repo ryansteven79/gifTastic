@@ -21,7 +21,7 @@
                 <div class="input-group">
                     <input type="text" class="form-control" id="search-value" value="" placeholder="" aria-label="" aria-describedby="basic-addon1">
                     <div class="input-group-append">
-                        <button id="searchBtn" class="btn btn-success" type="button">search</button>
+                        <button id="searchBtn" class="btn btn-success" type="submit">search</button>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
         var host = "https://api.giphy.com";
         var endpoint = "/v1/gifs/search";
         var apiKey = "?api_key=" + "zCnoYChqQJheHUpoWR7idTpChl7ayCAU";
-        var searchTerm = "";
+        var searchTerm ="what";
         var limit = "&limit=10"
         var fullURL = host + endpoint + apiKey + "&q=" + searchTerm + limit;
         var state;
@@ -51,8 +51,7 @@
             for (var i = 0; i < array.length; i++) {
                 var newBtn = $("<button>");
                 newBtn.text(array[i]);
-                newBtn.addClass("btn btn-success m-1");
-                newBtn.attr("id", "grnButton");
+                newBtn.addClass("btn btn-success m-1 grnButton");
                 newBtn.attr("data-search", array[i]);
                 $(".container").append(newBtn);
             }
@@ -74,18 +73,18 @@
                 var search = $("#search-value").val();
                 newBtn = $("<button>");
                 newBtn.text(search);
-                newBtn.addClass("btn btn-success m-1");
-                newBtn.attr("id", "grnButton");
+                newBtn.addClass("btn btn-success m-1 grnButton");
                 newBtn.attr("data-search", search);
                 $(".container").append(newBtn);
                 $("#search-value").val("");
             })
 
-            // FIX THIS
-            $("#grnButton").on("click", function () {
+                ////////// FIX THIS ///////////////////
+            $(".grnButton").on("click", function () {
                 searchTerm = $(this).attr("data-search");
-                console.log(searchTerm);
+                // console.log(searchTerm);
             })
+                ////////// FIX THIS ///////////////////
 
             $("img").on("click", function () {
                 state = $(this).attr("data-state");
