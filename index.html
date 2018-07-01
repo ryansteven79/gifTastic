@@ -12,18 +12,24 @@
     <div class="jumbotron">
         <div class="container">
         </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-9">
+                </div>
+                <div class="col-xl-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="search-value" value="" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                        <div class="input-group-append">
+                            <button id="searchBtn" class="btn btn-success" type="submit">search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xl-9">
-            </div>
-            <div class="col-xl-3">
-                <div class="input-group">
-                    <input type="text" class="form-control" id="search-value" value="" placeholder="" aria-label="" aria-describedby="basic-addon1">
-                    <div class="input-group-append">
-                        <button id="searchBtn" class="btn btn-success" type="submit">search</button>
-                    </div>
-                </div>
+            <div id="gif-landing" class="col-xl-9">
             </div>
         </div>
     </div>
@@ -32,75 +38,8 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-    <script type="text/javascript">
-        var array = ["baseball", "football", "basketball", "music", "LOL", "funny", "sad", "boring", "yes", "no", "up",
-            "down", "excited", "bunny", "cat", "dog", "horse", "cow", "school", "work"
-        ]
-        var host = "https://api.giphy.com";
-        var endpoint = "/v1/gifs/search";
-        var apiKey = "?api_key=" + "zCnoYChqQJheHUpoWR7idTpChl7ayCAU";
-        var searchTerm ="what";
-        var limit = "&limit=10"
-        var fullURL = host + endpoint + apiKey + "&q=" + searchTerm + limit;
-        var state;
-        $.ajax({
-            url: fullURL,
-            method: "GET"
-        }).then(function (response) {
 
-            for (var i = 0; i < array.length; i++) {
-                var newBtn = $("<button>");
-                newBtn.text(array[i]);
-                newBtn.addClass("btn btn-success m-1 grnButton");
-                newBtn.attr("data-search", array[i]);
-                $(".container").append(newBtn);
-            }
-
-            for (i = 0; i < response.data.length; i++) {
-                var gifTitle = response.data[i].title;
-                var gifRating = response.data[i].rating;
-                var imgURL = response.data[i].images.downsized_still.url;
-                var image = $("<img src ='" + imgURL + "'>");
-                var rating = $("<p>Image Rating: " + gifRating + "</p>");
-                image.attr("data-still", response.data[i].images.downsized_still.url);
-                image.attr("data-animate", response.data[i].images.downsized_medium.url);
-                image.attr("data-state", "still");
-                state = $(this).attr("data-state");
-                $(".col-xl-9").append(image, rating);
-            }
-
-            $("#searchBtn").on("click", function () {
-                var search = $("#search-value").val();
-                newBtn = $("<button>");
-                newBtn.text(search);
-                newBtn.addClass("btn btn-success m-1 grnButton");
-                newBtn.attr("data-search", search);
-                $(".container").append(newBtn);
-                $("#search-value").val("");
-            })
-
-                ////////// FIX THIS ///////////////////
-            $(".grnButton").on("click", function () {
-                searchTerm = $(this).attr("data-search");
-                // console.log(searchTerm);
-            })
-                ////////// FIX THIS ///////////////////
-
-            $("img").on("click", function () {
-                state = $(this).attr("data-state");
-                if (state === "still") {
-                    var animateGIF = $(this).attr("data-animate");
-                    $(this).attr("src", animateGIF);
-                    $(this).attr("data-state", "moving");
-                } else if (state === "moving") {
-                    var stopGIF = $(this).attr("data-still");
-                    $(this).attr("src", stopGIF);
-                    $(this).attr("data-state", "still");
-                }
-            })
-
-        });
-    </script>
+    <script src="assets/gifTastic.js"></script>
 
 </body>
 
