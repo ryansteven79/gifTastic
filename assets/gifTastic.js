@@ -36,8 +36,7 @@ $(document).ready(function () {
             console.log(i);
             var gifRating = response.data[i].rating;
             var imgURL = response.data[i].images.downsized_still.url;
-            var thumbnail = $("<div class='thumbnail'>");
-            var image = $("<img src ='" + imgURL + "'>");
+            var image = $("<img style='display:inline !important;'src ='" + imgURL + "'>");
             var rating = $("<p>Image Rating: " + gifRating + "</p>");
             image.attr("data-still", response.data[i].images.downsized_still.url);
             image.attr("data-animate", response.data[i].images.downsized_medium.url);
