@@ -8,7 +8,7 @@ https://ryansteven79.github.io/gifTastic/
 •HTML
 •Twitter Bootstrap
 •JavaScript
-•jQuery (timers)
+•jQuery
 •Ajax
 •API
 ```
